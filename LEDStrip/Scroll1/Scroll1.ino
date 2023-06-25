@@ -2,6 +2,7 @@
 
 #define LED_PIN     7
 #define NUM_LEDS   228
+#define CHANGE_COLOR_AFTER  10
 
 CRGB leds[NUM_LEDS];
 
@@ -27,10 +28,24 @@ int logo [][6]
 };
 int shift = 0;
 
+int color[3] = {150, 0, 0};
+int loopSinceColorChange = 0;
+
+void randomizeColor()
+{
+  color[0] = random(0, 150);
+  color[1] = random(0, 150);
+  color[2] = random(0, 150);
+}
   
 void loop() {
     int offset = 0;
-    int color[3] = {100, 0, 0};
+    if (loopSinceColorChange > CHANGE_COLOR_AFTER)
+    {
+      randomizeColor();
+      loopSinceColorChange = 0;
+    }
+    loopSinceColorChange++;
 
     while (offset < shift*6)
     {

@@ -4,13 +4,14 @@
 #define NUM_LEDS   228
 #define NUM_ROWS    38
 #define CHANGE_COLOR_AFTER  10
+#define AURORA_DELAY 20
 
 CRGB leds[NUM_LEDS];
 
 
 // values for aurora
 uint8_t topValue = 230;
-uint8_t bottomValue = 15;
+uint8_t bottomValue = 5;
 
 
   int greenSet[][3] = {
@@ -132,7 +133,7 @@ void loop() {
       offset = offset + 6;
     }
     FastLED.show();
-    delay(10);
+    delay(AURORA_DELAY);
   }
   // scroll 568
   for (int scrollCount = 0; scrollCount < 35; scrollCount++)
